@@ -3,6 +3,7 @@
 * supports operators : + - * /
 * after parsing each expression, prints the output
 * supports nested expressions
+* single line comments ';'
 
 example:
 
@@ -11,6 +12,7 @@ example:
 (- 10 2)
 (* 5 5) (- 10 5)
 (+ (+ 2 4) (+ 1 1))
+; comments
 ```
 
 output:

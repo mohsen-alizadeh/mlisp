@@ -14,6 +14,8 @@
 "(" return LPAREN;
 ")" return RPAREN;
 
+\;(.*) {};
+
 \"(.)*\" return STRING;
 
 [ \t\n] ;
