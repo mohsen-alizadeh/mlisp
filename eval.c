@@ -2,7 +2,6 @@
 #include "eval.h"
 #include <stdio.h>
 
-
 NODE eval(NODE node) {
   //printf("node %c\n", node->node_type);
   switch (node->node_type) {
@@ -17,7 +16,7 @@ NODE eval(NODE node) {
 NODE func_sum(NODE node) {
 
   int right = eval(node->u.children.right)->u.value;
-  int left = eval(node->u.children.right)->u.value;
+  int left = eval(node->u.children.left)->u.value;
 
   node->u.value = left + right;
   node->node_type = 'N';

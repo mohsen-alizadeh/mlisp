@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "ast.h"
 #include "eval.h"
+#include "debug.h"
 
 FILE *yyin;
 int yyerror(char*);
@@ -58,7 +59,12 @@ void main(int argc, char **argv) {
   current_block = first_block;
 
   while(current_block != NULL && current_block->root_node != NULL) {
+
+    print_node(current_block->root_node);
+    printf("\n");
+
     NODE result = eval(current_block->root_node);
+
     if (result != NULL && result->node_type == 'N') {
       printf("result is %d \n", result->u.value);
     }
