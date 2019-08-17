@@ -22,7 +22,7 @@ int yydebug = 1;
 %type <ast> exp
 
 %token <number> NUMBER
-%token <string> PLUS
+%token <string> PLUS MINUS MULTIPLY DIVIDE
 %token <string> LPAREN RPAREN
 %token <string> STRING
 
@@ -43,6 +43,9 @@ program:
 exp:
   NUMBER { $$ = make_number_node($1); }
 | LPAREN PLUS exp exp RPAREN { $$ = make_ast_node('+', $3, $4); }
+| LPAREN MINUS exp exp RPAREN { $$ = make_ast_node('-', $3, $4); }
+| LPAREN DIVIDE exp exp RPAREN { $$ = make_ast_node('/', $3, $4); }
+| LPAREN MULTIPLY exp exp RPAREN { $$ = make_ast_node('*', $3, $4); }
 ;
 
 %%

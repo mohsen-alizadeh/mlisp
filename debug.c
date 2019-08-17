@@ -7,7 +7,10 @@ void print_node(NODE node)
   case 'N':
     printf("%d", node->u.value); break;
   case '+':
-    printf("(+ ");
+  case '-':
+  case '*':
+  case '/':
+    printf("(%c ", node->node_type);
 
     print_node(node->u.children.left);
 

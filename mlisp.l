@@ -8,6 +8,9 @@
 
 [0-9]+ { yylval.number = atoi(yytext); return NUMBER; }
 "+" return PLUS;
+"-" return MINUS;
+"*" return MULTIPLY;
+"/" return DIVIDE;
 "(" return LPAREN;
 ")" return RPAREN;
 
