@@ -1,4 +1,5 @@
 mlisp
+vm
 
 lex.yy.c
 y.tab.c

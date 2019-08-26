@@ -7,6 +7,9 @@ y.tab.c: mlisp.y
 lex.yy.c: y.tab.c mlisp.l
 	lex mlisp.l
 
+vm: vm.c vm.h
+	gcc -o vm vm.c
+
 clean:
 	rm -rf mlisp
 	rm -rf y.tab.c
