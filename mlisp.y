@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "ast.h"
 #include "eval.h"
+#include "debug.h"
 
 FILE *yyin;
 int yyerror(char*);
@@ -17,8 +18,9 @@ int yydebug = 1;
 
 
 %start program
-
-%type <ast> exp
+ //%debug
+ %type <ast> exp
+%type <string> sym
 
 %token <number> NUMBER
 %token <string> PLUS
@@ -28,6 +30,8 @@ int yydebug = 1;
 %union {
   struct ast * ast;
   int number;
+  char * sym;
+  char * string;
 }
 
 %%
@@ -41,8 +45,10 @@ program:
 
 exp:
   NUMBER { $$ = make_number_node($1); }
-| LPAREN PLUS exp exp RPAREN { $$ = make_ast_node('+', $3, $4); }
+| LPAREN sym exp exp RPAREN { $$ = make_ast_node($2, $3, $4); }
 ;
+
+sym: PLUS;
 
 %%
 
@@ -58,10 +64,14 @@ int main(int argc, char **argv) {
   current_block = first_block;
 
   while(current_block != NULL && current_block->root_node != NULL) {
+    print_ast(current_block->root_node, 0);
+
+    /*
     NODE result = eval(current_block->root_node);
     if (result != NULL && result->node_type == NODE_NUM) {
       printf("result is %d \n", result->u.number);
     }
+    */
 
     current_block = current_block->next;
   }
@@ -70,6 +80,7 @@ int main(int argc, char **argv) {
 }
 
 int yyerror(char * message) {
-    printf("yyerror %s", message);
+    printf("yyerror %s\n", message);
+
     return 0;
 }

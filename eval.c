@@ -2,7 +2,6 @@
 #include "eval.h"
 #include <stdio.h>
 
-
 NODE eval(NODE node) {
   //printf("node %c\n", node->node_type);
   switch (node->node_type) {

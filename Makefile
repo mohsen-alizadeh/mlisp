@@ -1,5 +1,5 @@
-all: y.tab.c lex.yy.c
-	gcc -o mlisp y.tab.c lex.yy.c ast.c eval.c
+all: y.tab.c lex.yy.c debug.h debug.c
+	gcc -o mlisp y.tab.c lex.yy.c ast.c eval.c debug.c
 
 y.tab.c: mlisp.y
 	yacc -d mlisp.y
