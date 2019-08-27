@@ -1,4 +1,5 @@
 mlisp
+compile
 vm
 
 lex.yy.c

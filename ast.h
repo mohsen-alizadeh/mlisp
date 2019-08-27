@@ -9,7 +9,9 @@ struct ast {
       struct ast * left;
     } children;
 
-    int value;
+    int number;
+    char * err;
+    char * sym;
   } u;
 };
 
@@ -17,6 +19,8 @@ struct top_level_block {
   struct ast * root_node;
   struct top_level_block * next;
 };
+
+enum NODE_TYPE { NODE_NUM, NODE_ERR, NODE_SYM, NOdE_SEXP }
 
 #define NODE struct ast *
 #define BLOCK struct top_level_block *

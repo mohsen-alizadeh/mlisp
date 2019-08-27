@@ -26,8 +26,8 @@ NODE make_ast_node(int type, NODE left, NODE right) {
 NODE make_number_node(int value) {
   NODE node = (NODE) malloc(sizeof(struct ast));
 
-  node->node_type = 'N';
-  node->u.value = value;
+  node->node_type = NODE_NUM;
+  node->u.number = value;
 
   return node;
 }
