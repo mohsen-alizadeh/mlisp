@@ -20,7 +20,7 @@ struct top_level_block {
   struct top_level_block * next;
 };
 
-enum NODE_TYPE { NODE_NUM, NODE_ERR, NODE_SYM, NOdE_SEXP }
+enum NODE_TYPE { NODE_NUM, NODE_ERR, NODE_SYM, NOdE_SEXP };
 
 #define NODE struct ast *
 #define BLOCK struct top_level_block *

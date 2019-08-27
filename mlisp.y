@@ -46,7 +46,7 @@ exp:
 
 %%
 
-void main(int argc, char **argv) {
+int main(int argc, char **argv) {
   yyin = fopen(argv[1], "r");
 
   first_block = NULL;
@@ -59,14 +59,17 @@ void main(int argc, char **argv) {
 
   while(current_block != NULL && current_block->root_node != NULL) {
     NODE result = eval(current_block->root_node);
-    if (result != NULL && result->node_type == 'N') {
-      printf("result is %d \n", result->u.value);
+    if (result != NULL && result->node_type == NODE_NUM) {
+      printf("result is %d \n", result->u.number);
     }
 
     current_block = current_block->next;
   }
+
+  return 0;
 }
 
 int yyerror(char * message) {
     printf("yyerror %s", message);
+    return 0;
 }
