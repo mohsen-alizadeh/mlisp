@@ -1,4 +1,6 @@
 mlisp
+compile
+vm
 
 lex.yy.c
 y.tab.c

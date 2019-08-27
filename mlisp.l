@@ -7,7 +7,7 @@
 %%
 
 [0-9]+ { yylval.number = atoi(yytext); return NUMBER; }
-"+" return PLUS;
+"+" { yylval.string = "+"; return PLUS; };
 "(" return LPAREN;
 ")" return RPAREN;
 

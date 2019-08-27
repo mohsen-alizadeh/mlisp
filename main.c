@@ -2,8 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <editline/readline.h>
-#include <editline/history.h>
+//#####include <editline/history.h>
 #include "mpc.h"
+#include "compile.h"
 
 #define MAX_INPUT 1024
 
@@ -200,7 +201,7 @@ lval eval_op(char * op, lval a, lval b) {
   return lval_err(LERR_BAD_OP);
 }
 
-void compile(char * p) {
+void walking_tree(char * p) {
   mpc_parser_t *Program  = mpc_new("program");
   mpc_parser_t *Number  = mpc_new("number");
   mpc_parser_t *Sexp  = mpc_new("sexp");
@@ -218,7 +219,7 @@ void compile(char * p) {
   mpc_result_t r;
 
   if (mpc_parse("input", p, Program, &r)) {
-    eval_program(r.output);
+    compile(r.output);
     mpc_ast_delete(r.output);
   } else {
     mpc_err_print(r.error);
@@ -240,12 +241,9 @@ int main(int argc, char **argv) {
     }
 
     add_history(p);
-    compile(p);
+    walking_tree(p);
     free(p);
   }
 
   return 0;
 }
-
-
-
